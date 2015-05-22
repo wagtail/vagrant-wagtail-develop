@@ -5,6 +5,7 @@ WAGTAILDEMO_ROOT=/home/vagrant/wagtaildemo
 
 VIRTUALENV_DIR=/home/vagrant/.virtualenvs/wagtaildemo
 PYTHON=$VIRTUALENV_DIR/bin/python
+PIP=$VIRTUALENV_DIR/bin/pip
 
 NODE_VERSION=v0.12.3
 
@@ -23,6 +24,10 @@ EOF
 # install additional dependencies of wagtail master
 cd $WAGTAIL_ROOT
 $PYTHON setup.py develop
+
+# install developer-specific dependencies
+apt-get install -y libenchant-dev
+su - vagrant -c "$PIP install -r $WAGTAIL_ROOT/requirements-dev.txt"
 
 # run additional migrations in wagtail master
 su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
