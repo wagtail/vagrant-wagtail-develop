@@ -29,6 +29,9 @@ $PYTHON setup.py develop
 apt-get install -y libenchant-dev
 su - vagrant -c "$PIP install -r $WAGTAIL_ROOT/requirements-dev.txt"
 
+# install embedly so that test coverage for that module isn't skipped
+su - vagrant -c "$PIP install embedly"
+
 # run additional migrations in wagtail master
 su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
 
