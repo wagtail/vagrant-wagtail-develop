@@ -46,6 +46,7 @@ su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
 
 # also create a Python 2 environment
 su - vagrant -c "/usr/local/bin/virtualenv $PY2_VIRTUALENV_DIR"
+su - vagrant -c "$PY2_PIP install -r $WAGTAILDEMO_ROOT/requirements/dev.txt"
 cd $WAGTAIL_ROOT
 $PYTHON2 setup.py develop
 su - vagrant -c "$PY2_PIP install -r $WAGTAIL_ROOT/requirements-dev.txt"
