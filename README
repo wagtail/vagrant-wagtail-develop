@@ -1,7 +1,0 @@
-vagrant-wagtail-develop
-=======================
-
-A script to painlessly set up a Vagrant environment for development of Wagtail.
-
-Clone this repo, and run:
-./setup.sh
