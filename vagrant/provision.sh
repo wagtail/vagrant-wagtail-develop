@@ -16,15 +16,6 @@ NODE_VERSION=v0.12.3
 # bring up a vanilla wagtaildemo instance using the current release version of wagtail
 $WAGTAILDEMO_ROOT/vagrant/provision.sh
 
-# patch local.py to use our git checkout of wagtail
-cp $WAGTAILDEMO_ROOT/wagtaildemo/settings/local.py.example $WAGTAILDEMO_ROOT/wagtaildemo/settings/local.py
-cat << EOF >> $WAGTAILDEMO_ROOT/wagtaildemo/settings/local.py
-import sys
-import os
-PATH_TO_WAGTAIL = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'wagtail')
-sys.path.insert(1, PATH_TO_WAGTAIL)
-EOF
-
 # install additional dependencies of wagtail master
 cd $WAGTAIL_ROOT
 $PYTHON setup.py develop
