@@ -30,7 +30,7 @@ Start up wagtaildemo:
 
     ./manage.py runserver 0.0.0.0:8000
 
-and visit http://localhost:8000.
+and visit http://localhost:8000. The admin interface is at http://localhost:8000/admin/ - log in with admin / changeme
 
 Run tests:
 
