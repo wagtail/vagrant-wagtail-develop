@@ -39,12 +39,10 @@ su - vagrant -c "$PIP install embedly elasticsearch django-sendfile"
 # run additional migrations in wagtail master
 su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
 
-# install node + SASS compilation dependencies
-cd
-wget http://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION.tar.gz
-tar xzf node-$NODE_VERSION.tar.gz
-cd node-$NODE_VERSION/
-./configure && make && make install
+# install Node.js (for front-end asset building)
+# as per instructions on https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
+curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+apt-get install -y nodejs
 
 su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
 
