@@ -29,6 +29,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder "./wagtail", "/home/vagrant/wagtail"
   config.vm.synced_folder "./wagtaildemo", "/home/vagrant/wagtaildemo"
+  config.vm.synced_folder "./libs", "/home/vagrant/libs"
 
   # Provider-specific configuration for VirtualBox.
   config.vm.provider "virtualbox" do |vb|
