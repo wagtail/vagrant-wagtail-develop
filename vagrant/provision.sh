@@ -12,8 +12,6 @@ PYTHON2=$PY2_VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 PY2_PIP=$PY2_VIRTUALENV_DIR/bin/pip
 
-NODE_VERSION=v0.12.3
-
 # bring up a vanilla wagtaildemo instance using the current release version of wagtail
 $WAGTAILDEMO_ROOT/vagrant/provision.sh
 
@@ -28,8 +26,8 @@ su - vagrant -c "$PIP install -r $WAGTAIL_ROOT/requirements-dev.txt"
 su - vagrant -c "$PIP install embedly elasticsearch django-sendfile"
 
 # install Node.js (for front-end asset building)
-# as per instructions on https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories
-curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+# as per instructions on https://github.com/nodesource/distributions
+curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get install -y nodejs
 
 su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
