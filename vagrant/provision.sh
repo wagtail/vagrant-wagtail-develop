@@ -18,8 +18,7 @@ NODE_VERSION=v0.12.3
 $WAGTAILDEMO_ROOT/vagrant/provision.sh
 
 # install additional dependencies of wagtail master
-cd $WAGTAIL_ROOT
-$PYTHON setup.py develop
+su - vagrant -c "cd $WAGTAIL_ROOT && $PYTHON setup.py develop"
 
 # install developer-specific dependencies
 apt-get install -y libenchant-dev
@@ -36,10 +35,8 @@ apt-get install -y nodejs
 su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
 
 # set up our local checkouts of django-modelcluster and Willow
-cd $LIBS_ROOT/django-modelcluster
-$PYTHON setup.py develop
-cd $LIBS_ROOT/Willow
-$PYTHON setup.py develop
+su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON setup.py develop"
+su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON setup.py develop"
 
 # run additional migrations in wagtail master
 su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
@@ -47,11 +44,8 @@ su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
 # also create a Python 2 environment
 su - vagrant -c "/usr/local/bin/virtualenv $PY2_VIRTUALENV_DIR"
 su - vagrant -c "$PY2_PIP install -r $WAGTAILDEMO_ROOT/requirements/dev.txt"
-cd $WAGTAIL_ROOT
-$PYTHON2 setup.py develop
+su - vagrant -c "cd $WAGTAIL_ROOT && $PYTHON2 setup.py develop"
 su - vagrant -c "$PY2_PIP install -r $WAGTAIL_ROOT/requirements-dev.txt"
 su - vagrant -c "$PY2_PIP install embedly elasticsearch django-sendfile"
-cd $LIBS_ROOT/django-modelcluster
-$PYTHON2 setup.py develop
-cd $LIBS_ROOT/Willow
-$PYTHON2 setup.py develop
+su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON2 setup.py develop"
+su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON2 setup.py develop"
