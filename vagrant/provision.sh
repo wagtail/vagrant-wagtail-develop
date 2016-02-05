@@ -41,7 +41,7 @@ su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
 
 # also create a Python 2 environment
 su - vagrant -c "/usr/local/bin/virtualenv $PY2_VIRTUALENV_DIR"
-su - vagrant -c "$PY2_PIP install -r $WAGTAILDEMO_ROOT/requirements/dev.txt"
+su - vagrant -c "$PY2_PIP install -r $WAGTAILDEMO_ROOT/requirements.txt"
 su - vagrant -c "cd $WAGTAIL_ROOT && $PY2_PIP install -e .[testing,docs]"
 su - vagrant -c "$PY2_PIP install embedly elasticsearch django-sendfile"
 su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON2 setup.py develop"
