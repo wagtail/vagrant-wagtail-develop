@@ -15,12 +15,12 @@ PY2_PIP=$PY2_VIRTUALENV_DIR/bin/pip
 # bring up a vanilla wagtaildemo instance using the current release version of wagtail
 $WAGTAILDEMO_ROOT/vagrant/provision.sh
 
-# install additional dependencies of wagtail master
-su - vagrant -c "cd $WAGTAIL_ROOT && $PYTHON setup.py develop"
-
-# install developer-specific dependencies
+# install system-wide developer dependencies
 apt-get install -y libenchant-dev
-su - vagrant -c "$PIP install -r $WAGTAIL_ROOT/requirements-dev.txt"
+
+# install additional dependencies (including developer-specific ones)
+# of wagtail master
+su - vagrant -c "cd $WAGTAIL_ROOT && $PIP install -e .[testing,docs]"
 
 # install optional packages (so that the full test suite runs)
 su - vagrant -c "$PIP install embedly elasticsearch django-sendfile"
@@ -42,8 +42,7 @@ su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
 # also create a Python 2 environment
 su - vagrant -c "/usr/local/bin/virtualenv $PY2_VIRTUALENV_DIR"
 su - vagrant -c "$PY2_PIP install -r $WAGTAILDEMO_ROOT/requirements/dev.txt"
-su - vagrant -c "cd $WAGTAIL_ROOT && $PYTHON2 setup.py develop"
-su - vagrant -c "$PY2_PIP install -r $WAGTAIL_ROOT/requirements-dev.txt"
+su - vagrant -c "cd $WAGTAIL_ROOT && $PY2_PIP install -e .[testing,docs]"
 su - vagrant -c "$PY2_PIP install embedly elasticsearch django-sendfile"
 su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON2 setup.py develop"
 su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON2 setup.py develop"
