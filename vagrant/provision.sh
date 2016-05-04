@@ -27,7 +27,7 @@ su - vagrant -c "$PIP install embedly elasticsearch django-sendfile"
 
 # install Node.js (for front-end asset building)
 # as per instructions on https://github.com/nodesource/distributions
-curl -sL https://deb.nodesource.com/setup_6.x | bash -
+curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get install -y nodejs
 
 su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
