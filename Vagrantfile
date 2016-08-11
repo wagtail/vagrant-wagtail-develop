@@ -23,7 +23,7 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In this case,
   # accessing "localhost:8000" will access port 8000 on the guest machine.
-  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
 
   # Share additional folders to the guest VM
 
