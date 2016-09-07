@@ -3,3 +3,11 @@
 /.vagrant
 /libs
 /Vagrantfile.local
+*.swp
+*.pyc
+.DS_Store
+### JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
