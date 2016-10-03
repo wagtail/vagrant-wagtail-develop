@@ -13,46 +13,106 @@ Features
 Setup
 -----
 
-Clone this repo, and run:
+**Requirements:** [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
-    ./setup.sh
+Open a terminal and follow those instructions:
 
-(On platforms that can't run shell scripts, run the commands from setup.sh manually instead.)
+```sh
+# 1. Decide where to put the project. We use "~/Development" in our examples.
+cd ~/Development
+# 2. Clone the vagrant-wagtail-develop repository in a new "wagtail" folder.
+git@github.com:torchbox/vagrant-wagtail-develop.git wagtail
+# 3. Move inside the new folder.
+cd wagtail/
+# 4. Run the setup script. This will set up all required dependencies for you.
+./setup.sh
+```
 
-This will build a VM instance ready for you to SSH into:
+> Note: On platforms that can't run shell scripts, run the commands from [`setup.sh`](setup.sh) manually instead.
 
-    vagrant ssh
+Here is the resulting folder structure:
+
+```sh
+.
+├── libs          # Libs to develop wagtail against.
+├── vagrant       # Vagrant-related files.
+├── wagtail       # Wagtail repository / codebase.
+└── wagtaildemo   # wagtaildemo project used for development.
+```
+
+Once setup is over,
+
+```sh
+# 5. ssh into your new Vagrant virtual machine.
+vagrant ssh
+# 6. Start up the wagtaildemo development server.
+./manage.py runserver 0.0.0.0:8000
+# Success!
+```
+
+- Visit your site at http://localhost:8000
+- The admin interface is at http://localhost:8000/admin/ - log in with `admin` / `changeme`.
 
 What you can do
 ---------------
 
-Start up wagtaildemo:
+> Note: all of those commands are meant to be used **inside the Vagrant virtual machine**. To get there, go to your local Wagtail set up and `vagrant up` then `vagrant ssh`.
 
-    ./manage.py runserver 0.0.0.0:8000
+Start the wagtaildemo server:
 
-and visit http://localhost:8000. The admin interface is at http://localhost:8000/admin/ - log in with admin / changeme
+```sh
+./manage.py runserver 0.0.0.0:8000
+# Then visit http://localhost:8000 in your browser.
+```
 
-Run tests:
+Run the tests:
 
-    cd ../wagtail
-    ./runtests.py
+```sh
+cd /home/vagrant/wagtail
+# Python tests.
+./runtests.py
+# Node tests.
+npm run test
+```
+
+Run the linting:
+
+```sh
+cd /home/vagrant/wagtail
+# Python linting.
+# TODO
+# JavaScript linting.
+npm run lint
+```
 
 Build front-end assets:
 
-    cd ../wagtail
-    npm run build
+```sh
+cd /home/vagrant/wagtail
+npm run build
+# Note: can also be done from outside the virtual machine, provided you have the right version of node installed.
+```
 
-(or `npm run watch` to watch the source files for changes)
+Start front-end development tools and file watching:
 
-Build the docs:
+```sh
+cd /home/vagrant/wagtail
+npm run start
+# Note: can also be done from outside the virtual machine, provided you have the right version of node installed.
+```
 
-    cd ../wagtail/docs
-    make html
+Build the documentation:
 
-Switch to Python 2.7:
+```sh
+cd /home/vagrant/wagtail/docs
+make html
+```
 
-    source ~/.virtualenvs/wagtailpy2/bin/activate
+Switch between Python versions (Wagtail supports multiple ones):
 
-And back to Python 3:
-
-    source ~/.virtualenvs/wagtaildemo/bin/activate
+```sh
+# To switch to python 2.7,
+source ~/.virtualenvs/wagtailpy2/bin/activate
+# And to switch back to Python 3,
+source ~/.virtualenvs/wagtaildemo/bin/activate
+```
