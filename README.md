@@ -56,7 +56,7 @@ vagrant ssh
 What you can do
 ---------------
 
-> Note: all of those commands are meant to be used **inside the Vagrant virtual machine**. To get there, go to your local Wagtail set up and `vagrant up` then `vagrant ssh`.
+> Note: all of those commands are meant to be used **inside the Vagrant virtual machine**. To get there, go to your local Wagtail (`cd ~/Development/wagtail`) set up and `vagrant up` then `vagrant ssh`.
 
 Start the wagtaildemo server:
 
@@ -115,4 +115,31 @@ Switch between Python versions (Wagtail supports multiple ones):
 source ~/.virtualenvs/wagtailpy2/bin/activate
 # And to switch back to Python 3,
 source ~/.virtualenvs/wagtaildemo/bin/activate
+```
+
+Getting ready to contribute
+---------------------------
+
+Here are other actions you will likely need to do to make your first contribution to the project.
+
+Set up git remotes to Wagtail forks:
+
+```sh
+cd ~/Development/wagtail/wagtail
+# Change the default origin remote to point to your fork.
+git remote set-url origin https://github.com/<USERNAME>/wagtail.git
+# Add torchbox/wagtail as a "torchbox" remote.
+git remote add torchbox git@github.com:torchbox/wagtail.git
+# Add springload/wagtail as a "springload" remote.
+git remote add springload git@github.com:springload/wagtail.git
+# Add gasman/wagtail as a "gasman" remote.
+git remote add gasman git@github.com:gasman/wagtail.git
+# Pull latest changes from all remotes / forks.
+git pull --all
+```
+
+Get your development environment configured:
+
+```sh
+# TODO
 ```
