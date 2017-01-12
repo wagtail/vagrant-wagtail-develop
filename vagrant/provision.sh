@@ -20,7 +20,7 @@ apt-get install -y libenchant-dev
 
 # install additional dependencies (including developer-specific ones)
 # of wagtail master
-su - vagrant -c "cd $WAGTAIL_ROOT && $PIP install -e .[testing,docs]"
+su - vagrant -c "cd $WAGTAIL_ROOT && $PIP install -e .[testing,docs] -U"
 
 # install optional packages (so that the full test suite runs)
 su - vagrant -c "$PIP install embedly elasticsearch django-sendfile"
