@@ -19,6 +19,8 @@ Clone this repo, and run:
 
 (On platforms that can't run shell scripts, run the commands from setup.sh manually instead.)
 
+It can take a while (typically 15-20 minutes) to fetch and build all dependencies - you could go for a coffee in the meantime :)
+
 This will build a VM instance ready for you to SSH into:
 
     vagrant ssh
