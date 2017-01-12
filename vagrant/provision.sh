@@ -30,8 +30,6 @@ su - vagrant -c "$PIP install embedly elasticsearch django-sendfile"
 curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get install -y nodejs
 
-su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
-
 # set up our local checkouts of django-modelcluster and Willow
 su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON setup.py develop"
 su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON setup.py develop"
@@ -46,3 +44,7 @@ su - vagrant -c "cd $WAGTAIL_ROOT && $PY2_PIP install -e .[testing,docs]"
 su - vagrant -c "$PY2_PIP install embedly elasticsearch django-sendfile"
 su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON2 setup.py develop"
 su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON2 setup.py develop"
+
+# Install node.js tooling - do this last, because otherwise the presence of .node_modules
+# makes "pip install -e ." take forever
+su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
