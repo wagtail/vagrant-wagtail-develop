@@ -25,6 +25,10 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8000" will access port 8000 on the guest machine.
   config.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
 
+  # For autobuild docs livereload server
+  config.vm.network "forwarded_port", guest: 4000, host: 4000, auto_correct: true
+
+
   # Share additional folders to the guest VM
 
   config.vm.synced_folder "./wagtail", "/home/vagrant/wagtail"
