@@ -21,7 +21,7 @@ Open a terminal and follow those instructions:
 # 1. Decide where to put the project. We use "~/Development" in our examples.
 cd ~/Development
 # 2. Clone the vagrant-wagtail-develop repository in a new "wagtail" folder.
-git@github.com:torchbox/vagrant-wagtail-develop.git wagtail
+git@github.com:wagtail/vagrant-wagtail-develop.git wagtail
 # 3. Move inside the new folder.
 cd wagtail/
 # 4. Run the setup script. This will set up all required dependencies for you.
@@ -130,8 +130,8 @@ Set up git remotes to Wagtail forks:
 cd ~/Development/wagtail/wagtail
 # Change the default origin remote to point to your fork.
 git remote set-url origin https://github.com/<USERNAME>/wagtail.git
-# Add torchbox/wagtail as a "torchbox" remote.
-git remote add torchbox git@github.com:torchbox/wagtail.git
+# Add wagtail/wagtail as a "torchbox" remote.
+git remote add torchbox git@github.com:wagtail/wagtail.git
 # Add springload/wagtail as a "springload" remote.
 git remote add springload git@github.com:springload/wagtail.git
 # Add gasman/wagtail as a "gasman" remote.
