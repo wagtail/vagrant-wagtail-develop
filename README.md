@@ -21,7 +21,7 @@ Open a terminal and follow those instructions:
 # 1. Decide where to put the project. We use "~/Development" in our examples.
 cd ~/Development
 # 2. Clone the vagrant-wagtail-develop repository in a new "wagtail" folder.
-git@github.com:wagtail/vagrant-wagtail-develop.git wagtail
+git clone git@github.com:wagtail/vagrant-wagtail-develop.git wagtail-dev
 # 3. Move inside the new folder.
 cd wagtail/
 # 4. Run the setup script. This will set up all required dependencies for you.
@@ -80,7 +80,7 @@ Run the linting:
 ```sh
 cd /home/vagrant/wagtail
 # Python linting.
-# TODO
+make lint
 # JavaScript linting.
 npm run lint
 ```
@@ -129,7 +129,7 @@ cd ~/Development/wagtail/wagtail
 # Change the default origin remote to point to your fork.
 git remote set-url origin https://github.com/<USERNAME>/wagtail.git
 # Add wagtail/wagtail as a "torchbox" remote.
-git remote add torchbox git@github.com:wagtail/wagtail.git
+git remote add upstream git@github.com:wagtail/wagtail.git
 # Add springload/wagtail as a "springload" remote.
 git remote add springload git@github.com:springload/wagtail.git
 # Add gasman/wagtail as a "gasman" remote.
