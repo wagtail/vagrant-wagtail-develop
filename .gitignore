@@ -1,6 +1,7 @@
 /wagtail
 /wagtaildemo
 /.vagrant
+/.bundle
 /libs
 /Vagrantfile.local
 *.swp
