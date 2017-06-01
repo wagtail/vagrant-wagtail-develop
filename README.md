@@ -90,7 +90,6 @@ Build front-end assets:
 ```sh
 cd /home/vagrant/wagtail
 npm run build
-# Note: can also be done from outside the virtual machine, provided you have the right version of node installed.
 ```
 
 Start front-end development tools and file watching:
@@ -98,7 +97,6 @@ Start front-end development tools and file watching:
 ```sh
 cd /home/vagrant/wagtail
 npm run start
-# Note: can also be done from outside the virtual machine, provided you have the right version of node installed.
 ```
 
 Build the documentation:
