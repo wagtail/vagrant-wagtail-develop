@@ -139,9 +139,3 @@ git remote add gasman git@github.com:gasman/wagtail.git
 # Pull latest changes from all remotes / forks.
 git pull --all
 ```
-
-Get your development environment configured:
-
-```sh
-# TODO
-```
