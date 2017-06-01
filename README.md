@@ -20,10 +20,10 @@ Open a terminal and follow those instructions:
 ```sh
 # 1. Decide where to put the project. We use "~/Development" in our examples.
 cd ~/Development
-# 2. Clone the vagrant-wagtail-develop repository in a new "wagtail" folder.
+# 2. Clone the vagrant-wagtail-develop repository in a new "wagtail-dev" folder.
 git clone git@github.com:wagtail/vagrant-wagtail-develop.git wagtail-dev
 # 3. Move inside the new folder.
-cd wagtail/
+cd wagtail-dev/
 # 4. Run the setup script. This will set up all required dependencies for you.
 ./setup.sh
 ```
@@ -36,7 +36,7 @@ Here is the resulting folder structure:
 
 ```sh
 .
-├── libs          # Libs to develop wagtail against.
+├── libs          # Libs to develop Wagtail against.
 ├── vagrant       # Vagrant-related files.
 ├── wagtail       # Wagtail repository / codebase.
 └── wagtaildemo   # wagtaildemo project used for development.
@@ -58,7 +58,7 @@ vagrant ssh
 What you can do
 ---------------
 
-> Note: all of those commands are meant to be used **inside the Vagrant virtual machine**. To get there, go to your local Wagtail (`cd ~/Development/wagtail`) set up and `vagrant up` then `vagrant ssh`.
+> Note: all of those commands are meant to be used **inside the Vagrant virtual machine**. To get there, go to your local Wagtail (`cd ~/Development/wagtail-dev`) set up and `vagrant up` then `vagrant ssh`.
 
 Start the wagtaildemo server:
 
@@ -125,14 +125,14 @@ Here are other actions you will likely need to do to make your first contributio
 Set up git remotes to Wagtail forks:
 
 ```sh
-cd ~/Development/wagtail/wagtail
+cd ~/Development/wagtail-dev/wagtail
 # Change the default origin remote to point to your fork.
 git remote set-url origin https://github.com/<USERNAME>/wagtail.git
-# Add wagtail/wagtail as a "torchbox" remote.
+# Add wagtail/wagtail as the "upstream" remote.
 git remote add upstream git@github.com:wagtail/wagtail.git
-# Add springload/wagtail as a "springload" remote.
+# Add springload/wagtail as the "springload" remote.
 git remote add springload git@github.com:springload/wagtail.git
-# Add gasman/wagtail as a "gasman" remote.
+# Add gasman/wagtail as the "gasman" remote.
 git remote add gasman git@github.com:gasman/wagtail.git
 # Pull latest changes from all remotes / forks.
 git pull --all
