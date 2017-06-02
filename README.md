@@ -36,7 +36,7 @@ Here is the resulting folder structure:
 
 ```sh
 .
-├── libs          # Libs to develop Wagtail against.
+├── libs          # Supporting libraries to develop Wagtail against.
 ├── vagrant       # Vagrant-related files.
 ├── wagtail       # Wagtail repository / codebase.
 └── wagtaildemo   # wagtaildemo project used for development.
