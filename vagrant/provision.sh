@@ -31,7 +31,7 @@ su - vagrant -c "$PIP install embedly elasticsearch django-sendfile"
 
 # install Node.js (for front-end asset building)
 # as per instructions on https://github.com/nodesource/distributions
-curl -sL https://deb.nodesource.com/setup_4.x | bash -
+curl -sL https://deb.nodesource.com/setup_8.x | bash -
 apt-get install -y nodejs
 
 # set up our local checkouts of django-modelcluster and Willow
