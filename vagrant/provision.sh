@@ -16,7 +16,9 @@ PY2_PIP=$PY2_VIRTUALENV_DIR/bin/pip
 $WAGTAILDEMO_ROOT/vagrant/provision.sh
 
 # install system-wide developer dependencies
-apt-get install -y libenchant-dev
+apt-get update
+apt-get install -y libenchant-dev ruby2.0
+gem2.0 install scss_lint
 
 #Update pip
 su - vagrant -c "$PIP install -U pip"
