@@ -8,7 +8,7 @@ Features
 * Checkouts of Wagtail, wagtaildemo, django-modelcluster and Willow ready to develop against
 * Node.js / npm toolchain for front-end asset building
 * Optional packages installed (PostgreSQL, ElasticSearch, Embedly, Sphinx...)
-* Virtualenvs for Python 2 and 3
+* Virtualenv for Python 3
 
 Setup
 -----
@@ -106,15 +106,6 @@ Build the documentation:
 ```sh
 cd /home/vagrant/wagtail/docs
 make html
-```
-
-Switch between Python versions (Wagtail supports multiple ones):
-
-```sh
-# To switch to python 2.7,
-source ~/.virtualenvs/wagtailpy2/bin/activate
-# And to switch back to Python 3,
-source ~/.virtualenvs/wagtaildemo/bin/activate
 ```
 
 Getting ready to contribute
