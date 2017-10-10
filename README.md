@@ -5,7 +5,7 @@ A script to painlessly set up a Vagrant environment for development of Wagtail.
 
 Features
 --------
-* Checkouts of Wagtail, wagtaildemo, django-modelcluster and Willow ready to develop against
+* Checkouts of Wagtail, bakerydemo, django-modelcluster and Willow ready to develop against
 * Node.js / npm toolchain for front-end asset building
 * Optional packages installed (PostgreSQL, ElasticSearch, Embedly, Sphinx...)
 * Virtualenv for Python 3
@@ -39,7 +39,7 @@ Here is the resulting folder structure:
 ├── libs          # Supporting libraries to develop Wagtail against.
 ├── vagrant       # Vagrant-related files.
 ├── wagtail       # Wagtail repository / codebase.
-└── wagtaildemo   # wagtaildemo project used for development.
+└── bakerydemo    # Wagtail Bakery project used for development.
 ```
 
 Once setup is over,
@@ -47,7 +47,7 @@ Once setup is over,
 ```sh
 # 5. ssh into your new Vagrant virtual machine.
 vagrant ssh
-# 6. Start up the wagtaildemo development server.
+# 6. Start up the bakerydemo development server.
 ./manage.py runserver 0.0.0.0:8000
 # Success!
 ```
@@ -60,7 +60,7 @@ What you can do
 
 > Note: all of those commands are meant to be used **inside the Vagrant virtual machine**. To get there, go to your local Wagtail (`cd ~/Development/wagtail-dev`) set up and `vagrant up` then `vagrant ssh`.
 
-Start the wagtaildemo server:
+Start the bakerydemo server:
 
 ```sh
 ./manage.py runserver 0.0.0.0:8000

@@ -1,16 +1,16 @@
 #!/bin/bash
 
-WAGTAIL_ROOT=/home/vagrant/wagtail
-WAGTAILDEMO_ROOT=/home/vagrant/wagtaildemo
-LIBS_ROOT=/home/vagrant/libs
+WAGTAIL_ROOT=/vagrant/wagtail
+BAKERYDEMO_ROOT=/vagrant/bakerydemo
+LIBS_ROOT=/vagrant/libs
 
-VIRTUALENV_DIR=/home/vagrant/.virtualenvs/wagtaildemo
+VIRTUALENV_DIR=/home/vagrant/.virtualenvs/bakerydemo
 
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
-# bring up a vanilla wagtaildemo instance using the current release version of wagtail
-$WAGTAILDEMO_ROOT/vagrant/provision.sh
+# bring up a vanilla bakerydemo instance using the current release version of wagtail
+PROJECT_DIR=$BAKERYDEMO_ROOT $BAKERYDEMO_ROOT/vagrant/provision.sh bakerydemo
 
 # install system-wide developer dependencies
 apt-get update
@@ -37,9 +37,9 @@ apt-get install -y nodejs
 su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON setup.py develop"
 su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON setup.py develop"
 
-# run additional migrations in wagtail master
-su - vagrant -c "$PYTHON $WAGTAILDEMO_ROOT/manage.py migrate --noinput"
-
 # Install node.js tooling
 echo "Installing node.js tooling..."
 su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
+
+# run additional migrations in wagtail master
+su - vagrant -c "$PYTHON $BAKERYDEMO_ROOT/manage.py migrate --noinput"

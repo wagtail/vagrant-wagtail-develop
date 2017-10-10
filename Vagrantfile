@@ -28,13 +28,6 @@ Vagrant.configure(2) do |config|
   # For autobuild docs livereload server
   config.vm.network "forwarded_port", guest: 4000, host: 4000, auto_correct: true
 
-
-  # Share additional folders to the guest VM
-
-  config.vm.synced_folder "./wagtail", "/home/vagrant/wagtail"
-  config.vm.synced_folder "./wagtaildemo", "/home/vagrant/wagtaildemo"
-  config.vm.synced_folder "./libs", "/home/vagrant/libs"
-
   # Provider-specific configuration for VirtualBox.
   config.vm.provider "virtualbox" do |vb|
 
