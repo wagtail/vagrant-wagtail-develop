@@ -9,8 +9,8 @@ VIRTUALENV_DIR=/home/vagrant/.virtualenvs/bakerydemo
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
-# bring up a vanilla bakerydemo instance using the current release version of wagtail
-PROJECT_DIR=$BAKERYDEMO_ROOT $BAKERYDEMO_ROOT/vagrant/provision.sh bakerydemo
+# bring up a PostgreSQL-enabled bakerydemo instance using the current release version of wagtail
+PROJECT_DIR=$BAKERYDEMO_ROOT USE_POSTGRESQL=1 $BAKERYDEMO_ROOT/vagrant/provision.sh bakerydemo
 
 # install system-wide developer dependencies
 apt-get update
