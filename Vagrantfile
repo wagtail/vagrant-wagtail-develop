@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "torchbox/wagtail"
-  config.vm.box_version = "~> 1.0"
+  config.vm.box = "ubuntu/artful32"
+  config.vm.box_version = "~> 20180718.0.0"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
