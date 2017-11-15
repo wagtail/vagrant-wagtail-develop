@@ -10,6 +10,8 @@ Features
 * Optional packages installed (PostgreSQL, ElasticSearch, Embedly, Sphinx...)
 * Virtualenv for Python 3
 
+This script currently uses a `wagtail-2.0` branch of bakerydemo to test breaking changes in Wagtail 2.0.
+
 Setup
 -----
 

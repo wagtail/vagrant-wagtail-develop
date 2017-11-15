@@ -1,6 +1,9 @@
 #!/bin/bash
 
-git clone https://github.com/wagtail/bakerydemo.git
+# Fail if any command fails.
+set -e
+
+git clone -b wagtail-2.0 https://github.com/wagtail/bakerydemo.git
 git clone https://github.com/wagtail/wagtail.git
 mkdir -p libs
 git clone https://github.com/wagtail/django-modelcluster.git libs/django-modelcluster
