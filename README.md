@@ -120,7 +120,7 @@ Set up git remotes to Wagtail forks (run these lines outside of the Vagrant VM):
 ```sh
 cd ~/Development/wagtail-dev/wagtail
 # Change the default origin remote to point to your fork.
-git remote set-url origin https://github.com/<USERNAME>/wagtail.git
+git remote set-url origin git@github.com:<USERNAME>/wagtail.git
 # Add wagtail/wagtail as the "upstream" remote.
 git remote add upstream git@github.com:wagtail/wagtail.git
 # Add springload/wagtail as the "springload" remote.
