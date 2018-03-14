@@ -72,7 +72,7 @@ Start the bakerydemo server:
 Run the tests:
 
 ```sh
-cd /home/vagrant/wagtail
+cd /vagrant/wagtail
 # Python tests.
 ./runtests.py
 # Node tests.
@@ -82,7 +82,7 @@ npm run test
 Run the linting:
 
 ```sh
-cd /home/vagrant/wagtail
+cd /vagrant/wagtail
 # Python linting.
 make lint
 # JavaScript linting.
@@ -92,21 +92,21 @@ npm run lint
 Build front-end assets:
 
 ```sh
-cd /home/vagrant/wagtail
+cd /vagrant/wagtail
 npm run build
 ```
 
 Start front-end development tools and file watching:
 
 ```sh
-cd /home/vagrant/wagtail
+cd /vagrant/wagtail
 npm run start
 ```
 
 Build the documentation:
 
 ```sh
-cd /home/vagrant/wagtail/docs
+cd /vagrant/wagtail/docs
 make html
 ```
 
