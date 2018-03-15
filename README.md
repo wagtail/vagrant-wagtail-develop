@@ -5,10 +5,12 @@ A script to painlessly set up a Vagrant environment for development of Wagtail.
 
 Features
 --------
+* An Ubuntu 16.04 LTS (Xenial Xerus) base image
 * Checkouts of Wagtail, bakerydemo, django-modelcluster and Willow ready to develop against
 * Node.js / npm toolchain for front-end asset building
-* Optional packages installed (PostgreSQL, ElasticSearch, Embedly, Sphinx...)
-* Virtualenv for Python 3
+* Elasticsearch 5 installed (but disabled by default to make the VM less resource-heavy)
+* Optional packages installed (PostgreSQL, Embedly, Sphinx...)
+* Virtualenv for Python 3.5
 
 This script currently uses a `wagtail-2.0` branch of bakerydemo to test breaking changes in Wagtail 2.0.
 
