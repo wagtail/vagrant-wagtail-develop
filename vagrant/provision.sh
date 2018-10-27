@@ -11,6 +11,7 @@ PIP=$VIRTUALENV_DIR/bin/pip
 
 ELASTICSEARCH_VERSION=5.3.3
 ELASTICSEARCH_REPO=https://artifacts.elastic.co/downloads/elasticsearch
+ELASTICSEARCH_DEB="elasticsearch-${ELASTICSEARCH_VERSION}.deb"
 
 # silence "dpkg-preconfigure: unable to re-open stdin" warnings
 export DEBIAN_FRONTEND=noninteractive
@@ -74,13 +75,29 @@ su - vagrant -c "$PYTHON $BAKERYDEMO_ROOT/manage.py migrate --noinput"
 
 # Elasticsearch (disabled by default, as it's a resource hog)
 echo "Downloading Elasticsearch..."
-wget -q "${ELASTICSEARCH_REPO}/elasticsearch-${ELASTICSEARCH_VERSION}.deb"
-dpkg -i "elasticsearch-${ELASTICSEARCH_VERSION}.deb"
-rm "elasticsearch-${ELASTICSEARCH_VERSION}.deb"
-# reduce JVM heap size from 2g to 512m
-sed -i 's/^\(-Xm[sx]\)2g$/\1512m/g' /etc/elasticsearch/jvm.options
-# to enable:
-# systemctl enable elasticsearch
-# systemctl start elasticsearch
+download_elasticsearch() {
+    wget -q "${ELASTICSEARCH_REPO}/elasticsearch-${ELASTICSEARCH_VERSION}.deb"
+}
 
+download_elasticsearch
+
+# A timid attempt to prevent issues with the "connection refused" error, etc...
+if [ ! -f $ELASTICSEARCH_DEB ];
+then
+    # try again to download elasticsearch
+    download_elasticsearch
+fi
+
+if [ ! -f $ELASTICSEARCH_DEB ];
+then
+    echo "CAN NOT INSTALL ElasticSearch, CAN NOT DOWNLOAD IT" >&2
+else
+    dpkg -i $ELASTICSEARCH_DEB
+    rm $ELASTICSEARCH_DEB
+    # reduce JVM heap size from 2g to 512m
+    sed -i 's/^\(-Xm[sx]\)2g$/\1512m/g' /etc/elasticsearch/jvm.options
+    # to enable:
+    # systemctl enable elasticsearch
+    # systemctl start elasticsearch
+fi
 echo "Vagrant setup complete. You can now log in with: vagrant ssh"
