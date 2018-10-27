@@ -13,6 +13,8 @@ ELASTICSEARCH_VERSION=5.3.3
 ELASTICSEARCH_REPO=https://artifacts.elastic.co/downloads/elasticsearch
 ELASTICSEARCH_DEB="elasticsearch-${ELASTICSEARCH_VERSION}.deb"
 
+BASHRC=/home/vagrant/.bashrc
+
 # silence "dpkg-preconfigure: unable to re-open stdin" warnings
 export DEBIAN_FRONTEND=noninteractive
 
@@ -39,12 +41,28 @@ pip3 install -U pip
 pip install virtualenvwrapper
 
 # Set up virtualenvwrapper in .bashrc
-cat << EOF >> /home/vagrant/.bashrc
-export WORKON_HOME=/home/vagrant/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=python3
-source /usr/local/bin/virtualenvwrapper.sh
-EOF
+# just put these three values to .bashrc:
+BASHRC_LINE_1="export WORKON_HOME=/home/vagrant/.virtualenvsv"
+BASHRC_LINE_2="export VIRTUALENVWRAPPER_PYTHON=python3"
+BASHRC_LINE_VENV="source /usr/local/bin/virtualenvwrapper.sh"
+IS_NEED_UPDATE_BASHRC_VENV=no
 
+for i in $(seq 1 2);
+do
+    eval "CURRENT_LINE=\$BASHRC_LINE_$i"
+    IS_LINE_EXIST=$(cat $BASHRC | grep -q "^$CURRENT_LINE" && echo yes || echo no)
+    if [[ "$IS_LINE_EXIST" == "no" ]];
+    then
+        echo $CURRENT_LINE >> $BASHRC
+        IS_NEED_UPDATE_BASHRC_VENV=yes
+    fi
+done
+# prevent situatuin when "source" had called before env vars were provided
+if [[ "$IS_NEED_UPDATE_BASHRC_VENV" == "yes" ]];
+then
+	cat $BASHRC | grep -v "^$BASHRC_LINE_VENV" > "${BASHRC}.tmp" && mv ${BASHRC}.tmp $BASHRC
+	echo $BASHRC_LINE_VENV >> $BASHRC
+fi
 
 # bring up a PostgreSQL-enabled bakerydemo instance using the current release version of wagtail
 PROJECT_DIR=$BAKERYDEMO_ROOT DEV_USER=vagrant USE_POSTGRESQL=1 $BAKERYDEMO_ROOT/vagrant/provision.sh bakerydemo
