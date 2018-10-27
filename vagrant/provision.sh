@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 WAGTAIL_ROOT=/vagrant/wagtail
 BAKERYDEMO_ROOT=/vagrant/bakerydemo
