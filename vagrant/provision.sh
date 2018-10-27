@@ -35,7 +35,15 @@ apt-get install -y libenchant-dev
 apt-get install -y openjdk-8-jre-headless
 
 # Create pgsql superuser
-su - postgres -c "createuser -s vagrant"
+PG_USER_EXISTS=$(
+    su - postgres -c \
+    "psql postgres -tAc \"SELECT 'yes' FROM pg_roles WHERE rolname='vagrant' LIMIT 1\""
+)
+
+if [[ "$PG_USER_EXISTS" != "yes" ]];
+then
+    su - postgres -c "createuser -s vagrant"
+fi
 
 pip3 install -U pip
 pip install virtualenvwrapper
@@ -45,20 +53,23 @@ pip install virtualenvwrapper
 BASHRC_LINE_1="export WORKON_HOME=/home/vagrant/.virtualenvsv"
 BASHRC_LINE_2="export VIRTUALENVWRAPPER_PYTHON=python3"
 BASHRC_LINE_VENV="source /usr/local/bin/virtualenvwrapper.sh"
-IS_NEED_UPDATE_BASHRC_VENV=no
+NEEDS_UPDATE_BASHRC_VENV=no
 
+# Prevent duplicate values in .bashrc from repeat provision
+# "seq 1 2" is used just in case: if the number of lines will increase
 for i in $(seq 1 2);
 do
     eval "CURRENT_LINE=\$BASHRC_LINE_$i"
-    IS_LINE_EXIST=$(cat $BASHRC | grep -q "^$CURRENT_LINE" && echo yes || echo no)
-    if [[ "$IS_LINE_EXIST" == "no" ]];
+    LINE_EXISTS=$(cat $BASHRC | grep -q "^$CURRENT_LINE" && echo yes || echo no)
+    if [[ "$LINE_EXISTS" == "no" ]];
     then
         echo $CURRENT_LINE >> $BASHRC
-        IS_NEED_UPDATE_BASHRC_VENV=yes
+        NEEDS_UPDATE_BASHRC_VENV=yes
     fi
 done
-# prevent situatuin when "source" had called before env vars were provided
-if [[ "$IS_NEED_UPDATE_BASHRC_VENV" == "yes" ]];
+
+# Prevent a situation when "source" had called before env vars were provided
+if [[ "$NEEDS_UPDATE_BASHRC_VENV" == "yes" ]];
 then
 	cat $BASHRC | grep -v "^$BASHRC_LINE_VENV" > "${BASHRC}.tmp" && mv ${BASHRC}.tmp $BASHRC
 	echo $BASHRC_LINE_VENV >> $BASHRC
