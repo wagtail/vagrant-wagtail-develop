@@ -9,6 +9,9 @@ VIRTUALENV_DIR=/home/vagrant/.virtualenvs/bakerydemo
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
+ELASTICSEARCH_VERSION=5.3.3
+ELASTICSEARCH_REPO=https://artifacts.elastic.co/downloads/elasticsearch
+
 # silence "dpkg-preconfigure: unable to re-open stdin" warnings
 export DEBIAN_FRONTEND=noninteractive
 
@@ -71,9 +74,9 @@ su - vagrant -c "$PYTHON $BAKERYDEMO_ROOT/manage.py migrate --noinput"
 
 # Elasticsearch (disabled by default, as it's a resource hog)
 echo "Downloading Elasticsearch..."
-wget -q https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.3.3.deb
-dpkg -i elasticsearch-5.3.3.deb
-rm elasticsearch-5.3.3.deb
+wget -q "${ELASTICSEARCH_REPO}/elasticsearch-${ELASTICSEARCH_VERSION}.deb"
+dpkg -i "elasticsearch-${ELASTICSEARCH_VERSION}.deb"
+rm "elasticsearch-${ELASTICSEARCH_VERSION}.deb"
 # reduce JVM heap size from 2g to 512m
 sed -i 's/^\(-Xm[sx]\)2g$/\1512m/g' /etc/elasticsearch/jvm.options
 # to enable:
