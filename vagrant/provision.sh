@@ -87,6 +87,8 @@ su - vagrant -c "cd $WAGTAIL_ROOT && $PIP install -e .[testing,docs] -U"
 su - vagrant -c "$PIP install embedly \"elasticsearch>=5.0,<6.0\" django-sendfile"
 
 # install Node.js (for front-end asset building)
+# prevent the warning "apt-key output should not be parsed"
+export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 # as per instructions on https://github.com/nodesource/distributions
 curl -sL https://deb.nodesource.com/setup_8.x | bash -
 apt-get install -y nodejs
