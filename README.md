@@ -110,6 +110,28 @@ cd /vagrant/wagtail/docs
 make html
 ```
 
+Start Elasticsearch:
+
+```sh
+sudo service elasticsearch start
+```
+
+To enable Elasticsearch on bakerydemo, add the following to `bakerydemo/settings/local.py`:
+
+```
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.elasticsearch5',
+        'URLS': ['http://localhost:9200'],
+        'INDEX': 'wagtail',
+        'TIMEOUT': 5,
+        'OPTIONS': {},
+        'INDEX_SETTINGS': {},
+    }
+}
+```
+
+
 Getting ready to contribute
 ---------------------------
 
