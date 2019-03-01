@@ -99,6 +99,8 @@ su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON setup.py develop"
 
 # Install node.js tooling
 echo "Installing node.js tooling..."
+su - vagrant -c "curl -sL https://deb.nodesource.com/setup_8.x | bash -"
+su - vagrant -c "apt-get install -y nodejs"
 su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
 
 # run additional migrations in wagtail master
