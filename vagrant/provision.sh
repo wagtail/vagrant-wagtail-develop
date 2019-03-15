@@ -94,8 +94,8 @@ curl -sL https://deb.nodesource.com/setup_8.x | bash -
 apt-get install -y nodejs
 
 # set up our local checkouts of django-modelcluster and Willow
-su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PYTHON setup.py develop"
-su - vagrant -c "cd $LIBS_ROOT/Willow && $PYTHON setup.py develop"
+su - vagrant -c "cd $LIBS_ROOT/django-modelcluster && $PIP install -e ."
+su - vagrant -c "cd $LIBS_ROOT/Willow && $PIP install -e ."
 
 # Install node.js tooling
 echo "Installing node.js tooling..."
