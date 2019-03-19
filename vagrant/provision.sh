@@ -99,7 +99,7 @@ su - vagrant -c "cd $LIBS_ROOT/Willow && $PIP install -e ."
 
 # Install node.js tooling
 echo "Installing node.js tooling..."
-su - vagrant -c "cd $WAGTAIL_ROOT && npm install && npm run build"
+su - vagrant -c "cd $WAGTAIL_ROOT && npm install --no-save && npm run build"
 
 # run additional migrations in wagtail master
 su - vagrant -c "$PYTHON $BAKERYDEMO_ROOT/manage.py migrate --noinput"
