@@ -50,7 +50,7 @@ pip install virtualenvwrapper
 
 # Set up virtualenvwrapper in .bashrc
 # just put these three values to .bashrc:
-BASHRC_LINE_1="export WORKON_HOME=/home/vagrant/.virtualenvsv"
+BASHRC_LINE_1="export WORKON_HOME=/home/vagrant/.virtualenvs"
 BASHRC_LINE_2="export VIRTUALENVWRAPPER_PYTHON=python3"
 BASHRC_LINE_VENV="source /usr/local/bin/virtualenvwrapper.sh"
 NEEDS_UPDATE_BASHRC_VENV=no
