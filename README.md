@@ -15,7 +15,7 @@ Features
 Setup
 -----
 
-**Requirements:** [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
+**Requirements:** [Vagrant](https://www.vagrantup.com/), and a [compatible version of VirtualBox](https://www.vagrantup.com/docs/virtualbox/).
 
 Open a terminal and follow those instructions:
 
