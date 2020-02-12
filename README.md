@@ -3,6 +3,8 @@ vagrant-wagtail-develop
 
 A script to painlessly set up a Vagrant environment for development of Wagtail.
 
+> 👋 Are you interested in a Docker-based environment? Check out [docker-wagtail-develop](https://github.com/wagtail/docker-wagtail-develop).
+
 Features
 --------
 * An Ubuntu 18.04 LTS (Bionic Beaver) base image
