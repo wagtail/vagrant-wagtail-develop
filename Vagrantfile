@@ -31,8 +31,8 @@ Vagrant.configure(2) do |config|
   # Provider-specific configuration for VirtualBox.
   config.vm.provider "virtualbox" do |vb|
 
-    # Building node-sass requires more than the default 512Mb of memory
-    vb.memory = 1024
+  # development requires more than the default 512Mb of memory
+  vb.memory = 1024
   end
 
   # Enable provisioning with a shell script
