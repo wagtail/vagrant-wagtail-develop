@@ -11,9 +11,9 @@ Vagrant.configure(2) do |config|
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/bionic64"
-  config.vm.box_version = "~> 20190918.0.0"
+  # boxes at https://app.vagrantup.com/boxes/search.
+  config.vm.box = "ubuntu/impish64"
+  config.vm.box_version = "~> 20220123.0.0"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -31,8 +31,8 @@ Vagrant.configure(2) do |config|
   # Provider-specific configuration for VirtualBox.
   config.vm.provider "virtualbox" do |vb|
 
-  # development requires more than the default 512Mb of memory
-  vb.memory = 1024
+    # development requires more than the default 512Mb of memory
+    vb.memory = 1024
   end
 
   # Enable provisioning with a shell script
