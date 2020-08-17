@@ -7,12 +7,12 @@ A script to painlessly set up a Vagrant environment for development of Wagtail.
 
 Features
 --------
-* An Ubuntu 18.04 LTS (Bionic Beaver) base image
+* An Ubuntu 20.04 LTS (Focal Fossa) base image
 * Checkouts of Wagtail, bakerydemo, django-modelcluster and Willow ready to develop against
 * Node.js / npm toolchain for front-end asset building
 * Elasticsearch 5 installed (but disabled by default to make the VM less resource-heavy)
 * Optional packages installed (PostgreSQL, Embedly, Sphinx...)
-* Virtualenv for Python 3.6
+* Virtualenv for Python 3.8
 
 Setup
 -----
