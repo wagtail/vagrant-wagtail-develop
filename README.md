@@ -56,6 +56,10 @@ vagrant ssh
 # Success!
 ```
 
+Alternatively, if you're using VSCode and have the "Remote - SSH" extension, you can connect VSCode to the vagrant VM directly. This allows for much deeper debugging. Once connected, open the `/vagrant` directory. A debug `launch.json` is included and ready to go.
+
+Once wagtail is up and running,
+
 - Visit your site at http://localhost:8000
 - The admin interface is at http://localhost:8000/admin/ - log in with `admin` / `changeme`.
 
