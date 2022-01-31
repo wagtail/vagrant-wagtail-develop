@@ -90,7 +90,7 @@ su - vagrant -c "$PIP install embedly \"elasticsearch>=5.0,<6.0\" django-sendfil
 # prevent the warning "apt-key output should not be parsed"
 export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 # as per instructions on https://github.com/nodesource/distributions
-curl -sL https://deb.nodesource.com/setup_14.x | bash -
+curl -sL https://deb.nodesource.com/setup_16.x | bash -
 apt-get install -y nodejs
 
 # set up our local checkouts of django-modelcluster and Willow
