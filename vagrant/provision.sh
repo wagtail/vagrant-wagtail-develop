@@ -24,7 +24,7 @@ apt-get update -y
 # useful tools
 apt-get install -y vim git curl gettext build-essential
 # Python 3
-apt-get install -y python3 python3-dev python3-pip python3-venv
+apt-get install -y python3 python3-dev python3-pip python3-venv python-is-python3
 # PIL dependencies
 apt-get install -y libjpeg-dev libtiff-dev zlib1g-dev libfreetype6-dev liblcms2-dev
 # Redis and PostgreSQL
