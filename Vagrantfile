@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://app.vagrantup.com/boxes/search.
   config.vm.box = "ubuntu/impish64"
-  config.vm.box_version = "~> 20220123.0.0"
+  config.vm.box_version = "~> 20220319.0.1"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
