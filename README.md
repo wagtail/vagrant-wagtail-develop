@@ -158,3 +158,7 @@ git remote add gasman git@github.com:gasman/wagtail.git
 # Pull latest changes from all remotes / forks.
 git pull --all
 ```
+
+## See also
+
+- [Docker Wagtail development](https://github.com/wagtail/docker-wagtail-develop)
