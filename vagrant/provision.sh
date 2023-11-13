@@ -13,6 +13,8 @@ ELASTICSEARCH_VERSION=5.3.3
 ELASTICSEARCH_REPO=https://artifacts.elastic.co/downloads/elasticsearch
 ELASTICSEARCH_DEB="elasticsearch-${ELASTICSEARCH_VERSION}.deb"
 
+NODEJS_VERSION=20
+
 BASHRC=/home/vagrant/.bashrc
 
 # silence "dpkg-preconfigure: unable to re-open stdin" warnings
@@ -22,7 +24,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
 
 # useful tools
-apt-get install -y vim git curl gettext build-essential
+apt-get install -y vim git curl gettext build-essential ca-certificates gnupg
 # Python 3
 apt-get install -y python3 python3-dev python3-pip python3-venv python-is-python3
 # PIL dependencies
@@ -87,10 +89,13 @@ su - vagrant -c "cd $WAGTAIL_ROOT && $PIP install -e .[testing,docs] -U"
 su - vagrant -c "$PIP install embedly \"elasticsearch>=5.0,<6.0\" django-sendfile"
 
 # install Node.js (for front-end asset building)
+# as per instructions on https://github.com/nodesource/distributions
 # prevent the warning "apt-key output should not be parsed"
 export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
-# as per instructions on https://github.com/nodesource/distributions
-curl -sL https://deb.nodesource.com/setup_20.x | bash -
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODEJS_VERSION.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+apt-get update
 apt-get install -y nodejs
 
 # set up our local checkouts of django-modelcluster and Willow
