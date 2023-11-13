@@ -9,10 +9,6 @@ VIRTUALENV_DIR=/home/vagrant/.virtualenvs/bakerydemo
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
-ELASTICSEARCH_VERSION=5.3.3
-ELASTICSEARCH_REPO=https://artifacts.elastic.co/downloads/elasticsearch
-ELASTICSEARCH_DEB="elasticsearch-${ELASTICSEARCH_VERSION}.deb"
-
 NODEJS_VERSION=20
 
 BASHRC=/home/vagrant/.bashrc
@@ -33,8 +29,6 @@ apt-get install -y libjpeg-dev libtiff-dev zlib1g-dev libfreetype6-dev liblcms2-
 apt-get install -y redis-server postgresql libpq-dev
 # libenchant (spellcheck library for docs)
 apt-get install -y libenchant-dev
-# Java for Elasticsearch
-apt-get install -y openjdk-8-jre-headless
 
 # Create pgsql superuser
 PG_USER_EXISTS=$(
@@ -86,7 +80,7 @@ PROJECT_DIR=$BAKERYDEMO_ROOT DEV_USER=vagrant USE_POSTGRESQL=1 $BAKERYDEMO_ROOT/
 su - vagrant -c "cd $WAGTAIL_ROOT && $PIP install -e .[testing,docs] -U"
 
 # install optional packages (so that the full test suite runs)
-su - vagrant -c "$PIP install embedly \"elasticsearch>=5.0,<6.0\" django-sendfile"
+su - vagrant -c "$PIP install embedly django-sendfile"
 
 # install Node.js (for front-end asset building)
 # as per instructions on https://github.com/nodesource/distributions
@@ -109,31 +103,4 @@ su - vagrant -c "cd $WAGTAIL_ROOT && npm install --no-save && npm run build"
 # run additional migrations in wagtail master
 su - vagrant -c "$PYTHON $BAKERYDEMO_ROOT/manage.py migrate --noinput"
 
-# Elasticsearch (disabled by default, as it's a resource hog)
-echo "Downloading Elasticsearch..."
-download_elasticsearch() {
-    wget -q "${ELASTICSEARCH_REPO}/elasticsearch-${ELASTICSEARCH_VERSION}.deb"
-}
-
-download_elasticsearch
-
-# A timid attempt to prevent issues with the "connection refused" error, etc...
-if [ ! -f $ELASTICSEARCH_DEB ];
-then
-    # try again to download elasticsearch
-    download_elasticsearch
-fi
-
-if [ ! -f $ELASTICSEARCH_DEB ];
-then
-    echo "CAN NOT INSTALL ElasticSearch, CAN NOT DOWNLOAD IT" >&2
-else
-    dpkg -i $ELASTICSEARCH_DEB
-    rm $ELASTICSEARCH_DEB
-    # reduce JVM heap size from 2g to 512m
-    sed -i 's/^\(-Xm[sx]\)2g$/\1512m/g' /etc/elasticsearch/jvm.options
-    # to enable:
-    # systemctl enable elasticsearch
-    # systemctl start elasticsearch
-fi
 echo "Vagrant setup complete. You can now log in with: vagrant ssh"

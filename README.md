@@ -10,7 +10,6 @@ Features
 * An Ubuntu 22.04 (Jammy Jellyfish) base image
 * Checkouts of Wagtail, bakerydemo, django-modelcluster and Willow ready to develop against
 * Node.js / npm toolchain for front-end asset building
-* Elasticsearch 5 installed (but disabled by default to make the VM less resource-heavy)
 * Optional packages installed (PostgreSQL, Embedly, Sphinx...)
 * Virtualenv for Python 3.9
 
@@ -114,27 +113,6 @@ Build the documentation:
 ```sh
 cd /vagrant/wagtail/docs
 make html
-```
-
-Start Elasticsearch:
-
-```sh
-sudo service elasticsearch start
-```
-
-To enable Elasticsearch on bakerydemo, add the following to `bakerydemo/settings/local.py`:
-
-```
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.search.backends.elasticsearch5',
-        'URLS': ['http://localhost:9200'],
-        'INDEX': 'wagtail',
-        'TIMEOUT': 5,
-        'OPTIONS': {},
-        'INDEX_SETTINGS': {},
-    }
-}
 ```
 
 
