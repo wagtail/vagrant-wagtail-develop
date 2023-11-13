@@ -32,7 +32,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
 
     # development requires more than the default 512Mb of memory
-    vb.memory = 1024
+    vb.memory = 2048
   end
 
   # Enable provisioning with a shell script
