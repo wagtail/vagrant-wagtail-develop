@@ -50,7 +50,9 @@ Once setup is over,
 ```sh
 # 5. ssh into your new Vagrant virtual machine.
 vagrant ssh
-# 6. Start up the bakerydemo development server.
+# 6. Move to the bakerydemo directory.
+cd /vagrant/bakerydemo
+# 7. Start up the bakerydemo development server.
 ./manage.py runserver 0.0.0.0:8000
 # Success!
 ```
