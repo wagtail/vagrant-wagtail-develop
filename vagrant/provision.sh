@@ -9,7 +9,7 @@ VIRTUALENV_DIR=/home/vagrant/.virtualenvs/bakerydemo
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
-NODEJS_VERSION=20
+NODEJS_VERSION=22
 
 BASHRC=/home/vagrant/.bashrc
 
